@@ -1,11 +1,6 @@
 import { FC } from "react";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ChakraProvider } from "@chakra-ui/react";
 
 export const client = new ApolloClient({
   uri: "https://48p1r2roz4.sse.codesandbox.io",
@@ -13,5 +8,9 @@ export const client = new ApolloClient({
 });
 
 export const Providers: FC = ({ children }) => {
-  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+  return (
+    <ChakraProvider>
+      <ApolloProvider client={client}>{children}</ApolloProvider>
+    </ChakraProvider>
+  );
 };
